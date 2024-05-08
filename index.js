@@ -39,10 +39,12 @@ app.get("/games/:id", (req, res) => {
 });
 
 app.post("/games/save", (req, res) => {
-    var title = req.body.title;
-
+    var {title, year, category} = req.body;
+    
     games.create({
-        title: title
+        title: title,
+        year: year,
+        category: category
     }).then(res.sendStatus(200));
 });
 
@@ -57,12 +59,18 @@ app.delete("/games/:id", (req, res) => {
 
 app.put("/games/:id", (req, res) => {
     var id = req.params.id;
-    var title = req.body.title;
-    games.update({ title: title }, {
-        where: {
-            id: id
+    var {title, year, category} = req.body;
+    games.update(
+        {
+            title: title,
+            year: year,
+            cateogory: category
+        },{
+            where:{
+                id: id
+            }
         }
-    }).then(res.sendStatus(200));
+    ).then(res.sendStatus(200));
 });
 
 app.listen(8080, () => {
