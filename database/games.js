@@ -5,6 +5,14 @@ const games = connection.define("game", {
     title: {
         type: sequelize.STRING,
         allowNull: false
+    },
+    year:{
+        type: sequelize.INTEGER,
+        allowNull: false
+    },
+    category:{
+        type: sequelize.STRING,
+        allowNull: false
     }
 });
 
